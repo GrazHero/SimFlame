@@ -1,16 +1,18 @@
+/**
+ * Name:       Tim Hansen, Jacob Winters, Adrianna Jones, Mortada Shogar
+ * Assignment: SimFlame (Team Assignment)
+ * File:       SimulationPanel.java
+ * Date:       2019-12-02
+ */
 package csis1410.SimFlame;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.Set;
-import java.util.Timer;
-import java.util.TimerTask;
-import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -37,16 +39,6 @@ public class SimulationPanel extends JPanel implements MouseListener, MouseMotio
    private long lastDragRepaintTime = 0;
    private FlameColor flameColor = FlameColor.ORANGE;
    
-   
-   // Private Classes
-   
-   private class mouseDraggedTimerTask extends TimerTask {
-      @Override
-      public void run() {
-         
-      }
-   }
-   
    /**
     * The callback that tells the panel to redraw itself
     * 
@@ -61,13 +53,13 @@ public class SimulationPanel extends JPanel implements MouseListener, MouseMotio
          if (lastGridPosition == null)
             repaint();
       }
-      
    }
    
    // Constructors
    
    /**
     * Constructor for SimulationPanel
+    * 
     * @param simulation the simulation
     */
    public SimulationPanel(Simulation simulation) {
@@ -99,6 +91,11 @@ public class SimulationPanel extends JPanel implements MouseListener, MouseMotio
       return new Point(convertedX, convertedY);
    }
    
+   /**
+    * Overridden from JPanel. Draws the graphical representation of the world.
+    * 
+    * @param g the graphics context
+    */
    @Override
    public void paintComponent(Graphics g) {
       int backgroundWidth = worldWidth * cellSize;
@@ -174,15 +171,31 @@ public class SimulationPanel extends JPanel implements MouseListener, MouseMotio
       
    }
    
+   /**
+    * Changes the visibility of the fuel
+    * 
+    * @param b boolean determining if it's visible
+    */
    public void setFuelVisible(boolean b) {
       fuelVisible = b;
       repaint();
    }
    
+   /**
+    * Changes the visibility of the wind
+    * 
+    * @param b boolean determining if it's visible
+    */
    public void setWindVisible(boolean b) {
       windVisible = b;
       repaint();
    }
+   
+   /**
+    * Changes the visibility of the flame
+    * 
+    * @param b boolean determining if it's visible
+    */
    public void setFlameVisible(boolean b) {
       flameVisible = b;
       repaint();
@@ -228,7 +241,7 @@ public class SimulationPanel extends JPanel implements MouseListener, MouseMotio
        * So instead, I need to keep track of it myself using the mousePressed and
        * mouseReleased methods. buttonDown is an instance variable containing a number
        * corresponding to which mouse button is currently down.
-        */
+       */
       long currentTime = System.currentTimeMillis();
       Point gridCoords = mouseCoordsToGridCoords(e);
       if(buttonDown == 1) // left button

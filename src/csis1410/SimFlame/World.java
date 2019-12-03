@@ -1,3 +1,9 @@
+/**
+ * Name:       Tim Hansen, Jacob Winters, Adrianna Jones, Mortada Shogar
+ * Assignment: SimFlame (Team Assignment)
+ * File:       World.java
+ * Date:       2019-12-02
+ */
 package csis1410.SimFlame;
 
 import java.util.Arrays;
@@ -74,7 +80,7 @@ public class World {
       this(width, height); // call the other constructor
       if(pixelSize > 0)
          this.pixelSize = pixelSize;
-      else throw new IllegalArgumentException();
+      else throw new IllegalArgumentException(); // pixel size must be greater than 0
    }
    
    // Methods
@@ -101,10 +107,19 @@ public class World {
    
    /**
     * Randomizes the wind's x component at the given index
+    * 
     * @param i the index
     */
    public void randomizeWindXAt(int i) {
       windMapX[i / windMapBlockSize] = rand.nextInt(3) - 1;
+   }
+   
+   /**
+    * Randomizes the wind's y component at the given index
+    * @param i the index
+    */
+   public void randomizeWindYAt(int i) {
+      windMapY[i / windMapBlockSize] = rand.nextInt(3) - 1;
    }
    
    /**
@@ -118,14 +133,12 @@ public class World {
       return windMapY[i / windMapBlockSize];
    }
    
-   /**
-    * Randomizes the wind's y component at the given index
-    * @param i the index
-    */
-   public void randomizeWindYAt(int i) {
-      windMapY[i / windMapBlockSize] = rand.nextInt(3) - 1;
-   }
    
+   /**
+    * Adds fuel at the given point
+    * 
+    * @param p the point
+    */
    public void addFuelAt(Point p) {
       int x = p.getX();
       int y = p.getY();
@@ -136,6 +149,10 @@ public class World {
       }
    }
    
+   /**
+    * Removes fuel at the given point
+    * @param p the point
+    */
    public void removeFuelAt(Point p) {
       int x = p.getX();
       int y = p.getY();
@@ -276,6 +293,12 @@ public class World {
       }
    }
    
+   /**
+    * Removes a line of fuel to the world using a line draw algorithm
+    * 
+    * @param start the starting point of the line
+    * @param end the ending point of the line
+    */
    public void removeFuelLine(Point start, Point end) {
       
       if(start.getX() >= width || start.getY() >= height ||
@@ -509,11 +532,6 @@ public class World {
     * @return the point
     */
    public Point indexToPoint(int i) {
-      /****
-       *012
-       *345
-       *678
-       */
       // y = i / width
       // x = i % width
       return new Point(i % width, i / width);
@@ -548,6 +566,7 @@ public class World {
    
    /**
     * Gets the fuel set
+    * 
     * @return the fuel set
     */
    public Set<Point> getFuelSet() {

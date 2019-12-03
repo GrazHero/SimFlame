@@ -1,3 +1,9 @@
+/**
+ * Name:       Tim Hansen, Jacob Winters, Adrianna Jones, Mortada Shogar
+ * Assignment: SimFlame (Team Assignment)
+ * File:       Simulation.java
+ * Date:       2019-12-02
+ */
 package csis1410.SimFlame;
 
 import java.util.Set;
@@ -195,6 +201,7 @@ public class Simulation {
    
    /**
     * Sets the cooling rate of the world
+    * 
     * @param coolingRate the new cooling rate
     */
    public void setCoolingRate(double coolingRate) {
@@ -203,12 +210,18 @@ public class Simulation {
    
    /**
     * Gets the cooling rate of the world
+    * 
     * @return the cooling rate 
     */
    public double getCoolingRate() {
       return coolingRate;
    }
 
+   /**
+    * Sets the diffusion rate of the flame
+    * 
+    * @param diffusionRate the diffusion rate
+    */
    public void setDiffusionRate(double diffusionRate) {
       this.diffusionRate = diffusionRate;      
    }
