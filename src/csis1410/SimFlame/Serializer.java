@@ -55,18 +55,6 @@ public class Serializer {
 	 * @return null if filename is valid but deserialization fails
 	 */
 	public static World load(String filename) {
-		/*try (Scanner reader = new Scanner(new FileInputStream(new File(filename)))) {
-			ArrayList<Point> fuelList = world.getFuelList();
-				fuelList.add(new File(filename)); // you can't add a file to an ArrayList of points
-				                                  // also, improper indentation
-			for(Point el : fuelList) {
-				writer.println(el); // writer is undeclared here. why would you be using it anyway?
-				heatMap[] = heatMap.nextInt(); // heatmap is undeclared here. arrays don't have a nextInt() method
-			}
-		}
-		catch (FileNotFoundException e) {
-			System.out.println("File cannot be found.");
-		}*/
 	   try(Scanner scanner = new Scanner(new FileInputStream(new File(filename)))) {
 	      World world = deserialize(scanner);
 	      return world;
@@ -84,17 +72,6 @@ public class Serializer {
 	 * @return the serialized version as a String
 	 */
 	public static String serialize(World world) {
-	   /* This version is wrong. The documentation specifies that it should take a world
-	    * and return a String. It doesn't say this method should output to a file
-	    */
-		/*try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename))) { // where is the filename argument coming from?
-			out.writeObject(); // writeObject is supposed to take a parameter
-		} catch (FileNotFoundException e) {
-			System.out.println("File not found.");
-		} catch (IOException e) {
-			System.out.println("IO Exception occurred");
-		}*/
-	   
 	   /* We only want to serialize the fuel, not the heat.
 	    * Let's not use the standard object serialization Java provides for us.
 	    * Instead, let's just write the coordinates manually.
@@ -137,19 +114,6 @@ public class Serializer {
 	 * @return null if deserialization fails
 	 */
 	public static World deserialize(Scanner scanner) {
-	   // This version is wrong. It's not supposed to read a file in.
-		/*try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename))) { // where is filename coming from?
-			return() in.readObject(); // readObject should take an argument, return shouldn't have parentheses
-		} catch (FileNotFoundException e) {
-			System.out.println("File not found.");
-		} catch (IOException e) {
-			System.out.println("IO Exception occurred");
-		} catch (ClassNotFoundException e) {
-			System.out.println("Class not found.");
-		}
-		return null;*/
-
-	   //Scanner scanner = new Scanner(string); // use scanner to read the string
 	   try {
 	      // read the header
 	      int width = scanner.nextInt();

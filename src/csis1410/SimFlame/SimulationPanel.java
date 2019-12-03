@@ -202,17 +202,17 @@ public class SimulationPanel extends JPanel implements MouseListener, MouseMotio
    }
    @Override
    public void mouseClicked(MouseEvent e) {
-      // TODO: Write me
+      // Nothing is written here, but we still need this listener to avoid compilation errors. 
    }
    
    @Override
    public void mouseEntered(MouseEvent e) {
-      // TODO: Write me
+      // Nothing is written here, but we still need this listener to avoid compilation errors. 
    }
    
    @Override
    public void mouseExited(MouseEvent e) {
-      // TODO: Write me
+      // Nothing is written here, but we still need this listener to avoid compilation errors. 
    }
    
    @Override
@@ -260,7 +260,7 @@ public class SimulationPanel extends JPanel implements MouseListener, MouseMotio
 
    @Override
    public void mouseMoved(MouseEvent e) {
-      // Not used, but this stub must be here
+      // Nothing is written here, but we still need this listener to avoid compilation errors. 
    }
 
    /**
