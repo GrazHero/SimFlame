@@ -33,7 +33,7 @@ import javax.swing.JRadioButtonMenuItem;
  * Contains buttons and sliders for controlling the simulation.
  * Contains a SimulatorPanel.
  * 
- * @authors Jacob Winters and Tim Hansen
+ * @author Jacob Winters and Tim Hansen
  */
 public class Window extends JFrame {
    
@@ -266,6 +266,24 @@ public class Window extends JFrame {
    	});
    	mnView.add(rdbtnBlueFlame);
    	buttonGroup.add(rdbtnBlueFlame);
+   	
+   	JRadioButtonMenuItem rdbtnGreenFlame = new JRadioButtonMenuItem("Green Flame");
+   	rdbtnGreenFlame.addActionListener(new ActionListener() {
+   	   public void actionPerformed(ActionEvent e) {
+   	      simulationPanel.setFlameColor(FlameColor.GREEN);
+   	   }
+   	});
+   	buttonGroup.add(rdbtnGreenFlame);
+   	mnView.add(rdbtnGreenFlame);
+   	
+   	JRadioButtonMenuItem rdbtnPurpleFlame = new JRadioButtonMenuItem("Purple Flame");
+   	rdbtnPurpleFlame.addActionListener(new ActionListener() {
+   	   public void actionPerformed(ActionEvent e) {
+   	      simulationPanel.setFlameColor(FlameColor.PURPLE);
+   	   }
+   	});
+   	buttonGroup.add(rdbtnPurpleFlame);
+   	mnView.add(rdbtnPurpleFlame);
    }
    
    /**

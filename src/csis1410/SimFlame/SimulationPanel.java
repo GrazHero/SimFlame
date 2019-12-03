@@ -10,7 +10,6 @@ import java.awt.event.MouseMotionListener;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -128,6 +127,19 @@ public class SimulationPanel extends JPanel implements MouseListener, MouseMotio
                   blueValue = 0;
                   break;
                case BLUE:
+                  redValue = 0;
+                  blueValue = (float)(simulation.getWorld().getHeatAt(i));
+                  greenValue = (float)(simulation.getWorld().getHeatAt(i) / 5);
+                  break;
+               case GREEN:
+                  redValue = 0;
+                  blueValue = (float)(simulation.getWorld().getHeatAt(i) / 5);
+                  greenValue = (float)(simulation.getWorld().getHeatAt(i));
+                  break;
+               case PURPLE:
+                  redValue = (float)(simulation.getWorld().getHeatAt(i) / 2);
+                  blueValue = (float)(simulation.getWorld().getHeatAt(i));
+                  greenValue = 0;
                   break;
                }
                Color color = new Color(redValue, greenValue, blueValue);
@@ -235,16 +247,15 @@ public class SimulationPanel extends JPanel implements MouseListener, MouseMotio
 
    @Override
    public void mouseMoved(MouseEvent e) {
-      // TODO Auto-generated method stub
-      
+      // Not used, but this stub must be here
    }
 
    /**
     * Sets the flame color
+    * 
     * @param color the color
     */
    public void setFlameColor(FlameColor color) {
-      // TODO Auto-generated method stub
-      
+      this.flameColor = color;
    }
 }

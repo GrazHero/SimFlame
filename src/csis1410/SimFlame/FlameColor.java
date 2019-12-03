@@ -6,5 +6,5 @@ package csis1410.SimFlame;
  * @author Tim Hansen
  */
 public enum FlameColor {
-   ORANGE, BLUE, GREEN;
+   ORANGE, BLUE, GREEN, PURPLE;
 }

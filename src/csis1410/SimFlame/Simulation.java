@@ -139,32 +139,6 @@ public class Simulation {
          secondHeatMap = world.swapHeatMap(secondHeatMap);
       }
    }
-   
-   /**
-    * Makes fuel hot
-    * @param p the point to check
-    * @return 1.0 if there's fuel here
-    * @return the previous heat value of this point if there's not fuel
-    */
-   public double seed(Point p) {
-      if(world.getFuelSet().contains(p)) { // if there's fuel
-         return 1.0; // make it hot
-      } else {
-         return world.getHeatAt(p.getX(), p.getY());
-      }
-   }
-   
-   /**
-    * Gets the Point below this one
-    * @param position the point to look below
-    * @return the point below the given one
-    */
-   public Point convectFrom(Point position) {
-      Point newPoint = new Point(position.getX(), position.getY() + 1);
-      if(newPoint.getY() >= world.getHeight())
-         newPoint.setY(world.getHeight() - 1);
-      return newPoint;
-   }
 
    /**
     * Gets the world this Simulation is operating on
@@ -190,6 +164,7 @@ public class Simulation {
       secondHeatMap = new double[world.getWidth() * world.getHeight()];
       world.getUpdateCallback().fire();
    }
+   
    /**
     * Gets the period of this Simulation in milliseconds
     * 

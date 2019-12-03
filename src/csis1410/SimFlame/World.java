@@ -181,8 +181,6 @@ public class World {
       
       int deltaX = end.getX() - start.getX();
       int deltaY = end.getY() - start.getY();
-      //int x = start.getX();
-      //int y = start.getY();
       int xDir = (deltaX > 0 ? 1 : -1);
       int yDir = (deltaY > 0 ? 1 : -1);
       
@@ -289,8 +287,6 @@ public class World {
       
       int deltaX = end.getX() - start.getX();
       int deltaY = end.getY() - start.getY();
-      //int x = start.getX();
-      //int y = start.getY();
       int xDir = (deltaX > 0 ? 1 : -1);
       int yDir = (deltaY > 0 ? 1 : -1);
       
@@ -413,8 +409,10 @@ public class World {
       Arrays.fill(heatMap, 0);
       heatUpdateCallback.fire();
    }
+   
    /**
     * Gets the heat value at the given coordinates
+    * 
     * @param x the x coordinate
     * @param y the y coordinate
     * @return the heat value
@@ -435,6 +433,7 @@ public class World {
    
    /**
     * Gets the heat at the given index to the array
+    * 
     * @param i the index
     * @return the heat value
     */
@@ -450,12 +449,18 @@ public class World {
    
    /**
     * Sets the callback to be fired when the world updates
+    * 
     * @param callback the callback to fire on update 
     */
    public void setUpdateCallback(Callback callback) {
       heatUpdateCallback = callback;
    }
    
+   /**
+    * Gets the update callback
+    * 
+    * @return the callback
+    */
    public Callback getUpdateCallback() {
       return heatUpdateCallback;
    }
