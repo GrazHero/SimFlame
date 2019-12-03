@@ -1,3 +1,9 @@
+/**
+ * Name:       Tim Hansen, Jacob Winters, Adrianna Jones, Mortada Shogar
+ * Assignment: SimFlame (Team Assignment)
+ * File:       FlameColor.java
+ * Date:       2019-12-02
+ */
 package csis1410.SimFlame;
 
 /**
@@ -6,5 +12,5 @@ package csis1410.SimFlame;
  * @author Tim Hansen
  */
 public enum FlameColor {
-   ORANGE, BLUE, GREEN;
+   ORANGE, BLUE, GREEN, PURPLE;
 }
