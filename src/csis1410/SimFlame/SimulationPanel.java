@@ -19,7 +19,7 @@ import javax.swing.SwingUtilities;
  * The panel responsible for graphically drawing the simulation as well as
  * translating mouse events into coordinates usable by the simulation.
  *
- * @authors Mortada Shogar and Tim Hansen
+ * @author Mortada Shogar and Tim Hansen
  */
 public class SimulationPanel extends JPanel implements MouseListener, MouseMotionListener {
    
@@ -127,6 +127,8 @@ public class SimulationPanel extends JPanel implements MouseListener, MouseMotio
                   greenValue = (float)(simulation.getWorld().getHeatAt(i) / 5);
                   blueValue = 0;
                   break;
+               case BLUE:
+                  break;
                }
                Color color = new Color(redValue, greenValue, blueValue);
                g.setColor(color);
@@ -233,6 +235,15 @@ public class SimulationPanel extends JPanel implements MouseListener, MouseMotio
 
    @Override
    public void mouseMoved(MouseEvent e) {
+      // TODO Auto-generated method stub
+      
+   }
+
+   /**
+    * Sets the flame color
+    * @param color the color
+    */
+   public void setFlameColor(FlameColor color) {
       // TODO Auto-generated method stub
       
    }

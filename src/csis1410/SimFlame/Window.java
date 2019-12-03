@@ -249,11 +249,21 @@ public class Window extends JFrame {
    	mnView.add(chckbxViewWind);
    	
    	JRadioButtonMenuItem rdbtnOrangeFlame = new JRadioButtonMenuItem("Orange Flame");
+   	rdbtnOrangeFlame.addActionListener(new ActionListener() {
+   	   public void actionPerformed(ActionEvent arg0) {
+   	      simulationPanel.setFlameColor(FlameColor.ORANGE);
+   	   }
+   	});
    	mnView.add(rdbtnOrangeFlame);
    	rdbtnOrangeFlame.setSelected(true);
    	buttonGroup.add(rdbtnOrangeFlame);
    	
    	JRadioButtonMenuItem rdbtnBlueFlame = new JRadioButtonMenuItem("Blue Flame");
+   	rdbtnBlueFlame.addActionListener(new ActionListener() {
+   	   public void actionPerformed(ActionEvent e) {
+   	      simulationPanel.setFlameColor(FlameColor.BLUE);
+   	   }
+   	});
    	mnView.add(rdbtnBlueFlame);
    	buttonGroup.add(rdbtnBlueFlame);
    }
