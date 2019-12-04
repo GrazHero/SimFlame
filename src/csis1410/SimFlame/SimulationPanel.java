@@ -138,6 +138,36 @@ public class SimulationPanel extends JPanel implements MouseListener, MouseMotio
                   blueValue = (float)(simulation.getWorld().getHeatAt(i));
                   greenValue = 0;
                   break;
+               case REAL:
+                  // float heat = (float)y / (simulation.getWorld().getHeight() * cellSize);
+                  float heat =  (float)simulation.getWorld().getHeatAt(i);
+                  if (heat < 0.35) {
+                     // black to red
+                     redValue = linearInterpolate(0.0f, 0.35f, 0.0f, 1.0f, heat);
+                     greenValue = 0.0f;
+                     blueValue = 0.0f;
+                  } else if (heat < 0.5) {
+                     // red to orange
+                     redValue = 1.0f;
+                     greenValue = linearInterpolate(0.35f, 0.5f, 0.0f, 0.5f, heat);
+                     blueValue = 0.0f;
+                  } else if (heat < 0.75) {
+                     // orange to yellow
+                    redValue = 1.0f;
+                    greenValue = linearInterpolate(0.5f, 0.75f, 0.5f, 1.0f, heat);
+                    blueValue = 0.0f;
+                  } else if (heat < 0.8) {
+                     // yellow to almostwhite
+                     redValue = 1.0f;
+                     greenValue = 1.0f;
+                     blueValue = linearInterpolate(0.75f, 0.8f, 0.0f, 0.66f, heat);
+                  } else {
+                     // almostwhite to white
+                     redValue = 1.0f;
+                     greenValue = 1.0f;
+                     blueValue = linearInterpolate(0.8f, 1.0f, 0.66f, 1.0f, heat);
+                  }
+                  break;
                }
                Color color = new Color(redValue, greenValue, blueValue);
                g.setColor(color);
@@ -169,6 +199,11 @@ public class SimulationPanel extends JPanel implements MouseListener, MouseMotio
          }
       }
       
+   }
+   
+   private float linearInterpolate(float dmin, float dmax, float rmin, float rmax, float d) {
+      float t = (d - dmin) / (dmax - dmin);
+      return (rmax * t) + (rmin * (1 - t));
    }
    
    /**

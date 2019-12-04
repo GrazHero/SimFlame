@@ -315,6 +315,16 @@ public class Window extends JFrame {
    	});
    	buttonGroup.add(rdbtnPurpleFlame);
    	mnView.add(rdbtnPurpleFlame);
+   	
+//      // Real
+//      JRadioButtonMenuItem rdbtnRealFlame = new JRadioButtonMenuItem("Real Flame");
+//      rdbtnRealFlame.addActionListener(new ActionListener() {
+//         public void actionPerformed(ActionEvent e) {
+//            simulationPanel.setFlameColor(FlameColor.REAL);
+//         }
+//      });
+//      buttonGroup.add(rdbtnRealFlame);
+//      mnView.add(rdbtnRealFlame);
    }
    
    /**

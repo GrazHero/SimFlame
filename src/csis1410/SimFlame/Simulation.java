@@ -114,7 +114,7 @@ public class Simulation {
                   heatHere = world.getHeatAt(convectFrom);
                   
                   // set wind to new random values
-                  world.randomizeWindXAt(index);
+                  world.iterateWindXAt(index);
                   world.randomizeWindYAt(index);
                   
                   // diffuse
