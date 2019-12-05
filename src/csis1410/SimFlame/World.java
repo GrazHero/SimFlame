@@ -110,7 +110,7 @@ public class World {
     * 
     * @param i the index
     */
-   public void randomizeWindXAt(int i) {
+   public void iterateWindXAt(int i) {
       windMapX[i / windMapBlockSize] = rand.nextInt(3) - 1;
    }
    
@@ -118,7 +118,7 @@ public class World {
     * Randomizes the wind's y component at the given index
     * @param i the index
     */
-   public void randomizeWindYAt(int i) {
+   public void iterateWindYAt(int i) {
       windMapY[i / windMapBlockSize] = rand.nextInt(3) - 1;
    }
    

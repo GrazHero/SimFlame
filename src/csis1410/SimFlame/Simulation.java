@@ -9,6 +9,7 @@ package csis1410.SimFlame;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.HashSet;
 import java.util.Random;
 
 /**
@@ -29,6 +30,8 @@ public class Simulation {
    private double coolingRate = 0.01;
    private double diffusionRate = 0.5;
    private Random rand;
+   private int simulationTime;
+   public boolean magic;
    
    // Private Classes
    
@@ -60,6 +63,8 @@ public class Simulation {
       simulationTimer = null;
       secondHeatMap = new double[world.getWidth() * world.getHeight()];
       rand = new Random();
+      simulationTime = 0;
+      magic = false;
    }
    
    // Methods 
@@ -95,7 +100,7 @@ public class Simulation {
     * Gets called repeatedly by simulationTimer. Is responsible for progressing the simulation.
     */
    public void step() {
-      Set<Point> fuel = world.getFuelSet();
+      Set<Point> fuel = magic ? getMagicFuel() : world.getFuelSet();
       synchronized(fuel) {
          for(int i = 0; i < world.getWidth(); i++) {
             for(int j = 0; j < world.getHeight(); j++) {
@@ -114,8 +119,8 @@ public class Simulation {
                   heatHere = world.getHeatAt(convectFrom);
                   
                   // set wind to new random values
-                  world.randomizeWindXAt(index);
-                  world.randomizeWindYAt(index);
+                  world.iterateWindXAt(index);
+                  world.iterateWindYAt(index);
                   
                   // diffuse
                   double nearbyHeat = 0;
@@ -144,6 +149,36 @@ public class Simulation {
          }
          secondHeatMap = world.swapHeatMap(secondHeatMap);
       }
+      simulationTime++;
+   }
+
+   private Set<Point> getMagicFuel() {
+      
+      // polar plot r=log2 (2 + cos(theta * 5)), theta=0 to 8 pi
+      int cycleLength = 256;
+      int size = 10000;
+      int worldWidth = world.getWidth();
+      int worldHeight = world.getHeight();
+      Set<Point> fuel = new HashSet<Point>(size);
+      double offset = ((double)simulationTime) / ((double)cycleLength);
+      for (int i = 0 ; i < size ; i++) {
+         double t = (((double)i) / ((double)size)) * 8.0 * Math.PI;
+         
+         double r = Math.log(2.0 + Math.cos((t + offset) * 5)) * 0.8f;
+         double xHat = r * Math.cos(t);
+         double yHat = r * Math.sin(t);
+         
+         int x = (int)(linearInterpolate(-1.0f, 1.0f, 0.0f, worldWidth, xHat));
+         int y = (int)(linearInterpolate(-1.0f, 1.0f, 0.0f, worldHeight, yHat));
+
+         fuel.add(new Point(x, y));
+      }
+      return fuel;
+   }
+   
+   private double linearInterpolate(double dmin, double dmax, double rmin, double rmax, double d) {
+      double t = (d - dmin) / (dmax - dmin);
+      return (rmax * t) + (rmin * (1 - t));
    }
 
    /**
@@ -197,6 +232,14 @@ public class Simulation {
     */
    public Timer getSimulationTimer() {
       return simulationTimer;
+   }
+   
+   /**
+    * Gets the number of simulation ticks that have passed.
+    * @return the number of ticks
+    */
+   public int getSimulationTime() {
+      return simulationTime;
    }
    
    /**
